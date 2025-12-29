@@ -4,8 +4,6 @@ public class Light {
 
     private boolean isOn = false;
 
-
-
     public void turnOnLight() {
         isOn = true;
     }

@@ -4,11 +4,18 @@ public class App {
 
     public static void main(String[] args) {
         var light = new Light();
-        light.isOn();
-        light.turnOnLight();
-        light.isOn();
-        light.turnOffLight();
-        light.isOn();
+
+        var lightOperationExecutor = new LightOperationExecutor();
+
+        lightOperationExecutor.queueOperation(new CheckLightOperation(light));
+        lightOperationExecutor.queueOperation(new TurnLightOnOperation(light));
+        lightOperationExecutor.queueOperation(new CheckLightOperation(light));
+        lightOperationExecutor.queueOperation(new TurnLightOffOperation(light));
+        lightOperationExecutor.queueOperation(new CheckLightOperation(light));
+
+        lightOperationExecutor.execute();
+
+        }
+
     }
 
-}
